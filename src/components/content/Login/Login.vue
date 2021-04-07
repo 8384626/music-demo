@@ -99,6 +99,7 @@ export default {
   border-radius: 20px;
   padding: 10px 20px;
   background-color: #eeeded;
+
 }
 .login-close {
   position: absolute;

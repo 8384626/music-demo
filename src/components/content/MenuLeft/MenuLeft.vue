@@ -24,7 +24,7 @@ export default {
         { id: 1, link: "", image: "", text: "推荐" },
         {
           id: 2,
-          link: "/discovr",
+          link: "/discover",
           image: require("assets/img/menuLeft/discovr-music.svg"),
           text: "发现音乐",
         },
@@ -80,10 +80,10 @@ export default {
 
 <style scoped>
 .menuleft {
+  float: left;
   width: 300px;
-  height: calc(100vh - 70px);
+  height: calc(100% - 70px);
   background-color: #181818;
-  transform: translateY(-16px);
 }
 dl {
   width: 100%;

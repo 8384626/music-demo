@@ -3,8 +3,33 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
+const DiscoverMusic=() =>import('views/discover/DiscoverMusic')
+const Personal=() =>import('views/discover/ChildrenRoute/Personal')
+const Category=() =>import('views/discover/ChildrenRoute/MusicList')
 
+const routes = [
+  {
+    path:'',
+    redirect:'/discover'
+  },
+  {
+    path:'/discover',
+    component:DiscoverMusic,
+    children:[
+      {
+        path:'/',
+        redirect:'/discover/personal'
+      },
+      {
+        path:'/discover/personal',
+        component:Personal
+      },
+      {
+        path:'/discover/category',
+        component:Category
+      },
+    ]
+  }
 ]
 
 const router = new VueRouter({

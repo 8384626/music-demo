@@ -1,39 +1,40 @@
 <template>
   <div class="main">
-    <div class="menu-left">
-      <menu-left></menu-left>
-    </div>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <div class="login">
-      <div style="width:400px">
-        <login v-show="$store.getters.getShowLogin && !$store.state.user"></login>
+      <div style="width: 400px">
+        <login
+          v-show="$store.getters.getShowLogin && !$store.state.user"
+        ></login>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Login from './Login/Login'
-import MenuLeft from 'components/content/MenuLeft/MenuLeft.vue';
+import Login from "./Login/Login";
 
 export default {
-  components:{
+  components: {
     Login,
-    MenuLeft
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 .main {
-  display: flex;
-  width: 100%;
+  position: relative;
+  width: calc(100% - 15%);
   height: calc(100% - 54px - 59px);
+  margin-left: 15%;
 }
-.login{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  transform: translateX(-5%);
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 999;
 }
 </style>
