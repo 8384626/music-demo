@@ -1,32 +1,49 @@
 <template>
-  <div class="music-list">
-    <div class="list-item" v-for="item in recMusicList" :key="item.id">
-      <img :src="item.picUrl" alt="">
-      <div class="title">{{item.name}}</div>
-      <div class="count">
-        <img src="~assets/img/discover/music-count.svg" alt />
-        {{item.playCount}}
+  <div>
+    <div class="music-list" v-if="musicList.length > 0">
+      <div
+        class="list-item"
+        v-for="(item, index) in musicList"
+        :key="item.id"
+        @click="entryDetail(index)"
+      >
+        <img :src="getImgUrl(item)" alt="" />
+        <div class="title">{{ item.name }}</div>
+        <div class="count">
+          <img src="~assets/img/discover/music-count.svg" alt />
+          {{ item.playCount }}
+        </div>
       </div>
+    </div>
+    <div v-else>
+      <h3>暂无数据</h3>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props:{
-    recMusicList:{
-      type:Array,
-      default(){
-        return []
-      }
-    }
-  }
-}
+  props: {
+    musicList: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+  methods: {
+    entryDetail(index) {
+      console.log(this.recMusicList[index].id);
+    },
+    getImgUrl(item) {
+      return item.picUrl || item.coverImgUrl;
+    },
+  },
+};
 </script>
 
 <style scoped>
 .music-list {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
@@ -38,7 +55,7 @@ export default {
   padding-bottom: 10px;
   font-size: 13px;
 }
-img{
+img {
   width: 100%;
 }
 .count {
@@ -49,7 +66,7 @@ img{
   height: 20px;
   line-height: 20px;
   text-align: right;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4))
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 }
 .count img {
   display: inline-block;

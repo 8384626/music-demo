@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 const DiscoverMusic=() =>import('views/discover/DiscoverMusic')
 const Personal=() =>import('views/discover/ChildrenRoute/Personal')
 const Category=() =>import('views/discover/ChildrenRoute/MusicList')
+const RankList=() =>import('views/discover/ChildrenRoute/RankList')
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
       {
         path:'/discover/category',
         component:Category
+      },
+      {
+        path:'/discover/ranklist',
+        component:RankList
       },
     ]
   }

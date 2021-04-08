@@ -1,10 +1,10 @@
 <template>
-  <div class="tab-control">
+  <div class="tab-control" v-if="titles">
     <div class="content">
       <router-link v-for="(item,index) in titles" :key="item.id" :to="item.link">
         <div
           class="tab-control-item"
-          :class="{ active: currentId === item.id }"
+          :class="{ active: $store.state.ControlTabCurrentId === item.id }"
           @click="itemClick(index)"
         >
           <span>{{ item.name }}</span>
@@ -27,16 +27,13 @@ export default {
   },
   data() {
     return {
-      currentId: 1,
     };
   },
   methods: {
     itemClick(index) {
-      console.log(this.titles);
-      this.currentId = this.titles[index].id;
-      this.$emit("tabClick", index);
+      this.$store.commit('setConrtrolTabCurrentId', this.titles[index].id);
     },
-  },
+  }
 };
 </script>
 

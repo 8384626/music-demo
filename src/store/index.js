@@ -11,6 +11,8 @@ export default new Vuex.Store({
     uid:null,
     // 是否展示登录页面
     isShowLogin: false,
+    // 记录当前controltab的ID
+    ControlTabCurrentId:1,
   },
   mutations: {
     showLogin(state){
@@ -19,6 +21,9 @@ export default new Vuex.Store({
     addUserInfo(state,payload){
       state.user = payload
       state.uid = payload.profile.userId
+    },
+    setConrtrolTabCurrentId(state,payload){
+      state.ControlTabCurrentId = payload
     }
   },
   actions: {

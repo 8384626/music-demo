@@ -1,11 +1,16 @@
 <template>
   <div class="navbar">
     <div class="left">
-      <div class="left-login">
+      <div class="left-login" @click="backHome">
         <img src="~assets/img/navbar/login.jpg" alt />
         <span>LastCode music</span>
       </div>
-      <img class="left-back" src="~assets/img/navbar/back.svg" alt />
+      <img
+        class="left-back"
+        src="~assets/img/navbar/back.svg"
+        alt
+        @click="back"
+      />
     </div>
     <div class="center">
       <music-search></music-search>
@@ -31,10 +36,17 @@ export default {
       statu: "未登录",
     };
   },
-  methods:{
-    showLogin(){
-      this.$store.commit("showLogin")
-    }
+  methods: {
+    showLogin() {
+      this.$store.commit("showLogin");
+    },
+    backHome() {
+      if (this.$route.path == "/discover/personal") return;
+      this.$router.push("/discover");
+    },
+    back() {
+      this.$router.go(-1);
+    },
   },
   computed: {
     getImage() {
@@ -97,12 +109,12 @@ export default {
   opacity: 0.9;
 }
 /* 设置右侧微信 */
-.login{
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.profile{
+.profile {
   display: flex;
   align-content: center;
   width: 30px;
@@ -110,12 +122,12 @@ export default {
   background-color: #fff;
   border-radius: 50%;
 }
-.profile img{
+.profile img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
 }
-.login-text{
+.login-text {
   margin-left: 10px;
   color: #eee;
 }
