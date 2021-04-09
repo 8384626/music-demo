@@ -5,8 +5,8 @@
         <div class="title">
           最新MV
           <div class="right">
-            <!-- <span>更多</span> -->
-            <!-- <img src="~assets/img/content/next.svg" alt /> -->
+            <span>更多</span>
+            <img src="~assets/img/recmv/rec-mv-right-arrow.svg" alt />
           </div>
         </div>
         <mv-item :mv-list="mvList" />
@@ -15,8 +15,8 @@
         <div class="title">
           MV排行榜
           <div class="right">
-            <!-- <span>更多</span> -->
-            <!-- <img src="~assets/img/content/next.svg" alt /> -->
+            <span>更多</span>
+            <img src="~assets/img/recmv/rec-mv-right-arrow.svg" alt />
           </div>
         </div>
         <mv-rank-list :top-mv="topMv" />
@@ -55,6 +55,9 @@ export default {
         console.log(this.topMv);
       });
     },
+    setControlTabCurrentId(){
+      this.$store.commit("setConrtrolTabCurrentId", 6);
+    }
   },
   components: {
     MvItem,
@@ -62,6 +65,11 @@ export default {
   },
   created() {
     this.getMv();
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.setControlTabCurrentId();
+    });
   },
 };
 </script>
@@ -95,9 +103,13 @@ export default {
   color: #fff;
 }
 .right span {
-  vertical-align: 6px;
+  font-size: 16px;
+  vertical-align: 5px;
+  margin-right: 5px;
 }
 .right img {
+  width: 12px;
+  height: 12px;
   height: 100%;
 }
 .rankList {
