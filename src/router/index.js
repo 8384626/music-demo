@@ -7,6 +7,10 @@ const DiscoverMusic=() =>import('views/discover/DiscoverMusic')
 const Personal=() =>import('views/discover/ChildrenRoute/Personal')
 const Category=() =>import('views/discover/ChildrenRoute/MusicList')
 const RankList=() =>import('views/discover/ChildrenRoute/RankList')
+const Songer=() =>import('views/discover/ChildrenRoute/Singer')
+const NewSongs=()=>import('views/discover/ChildrenRoute/NewSongs')
+const RecMv=()=>import('views/discover/ChildrenRoute/RecMv')
+
 
 const routes = [
   {
@@ -33,6 +37,18 @@ const routes = [
         path:'/discover/ranklist',
         component:RankList
       },
+      {
+        path:'/discover/singer',
+        component:Songer
+      },
+      {
+        path:'/discover/newsongs',
+        component:NewSongs
+      },
+      {
+        path:'/discover/recmv',
+        component:RecMv
+      }
     ]
   }
 ]

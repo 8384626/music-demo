@@ -48,8 +48,7 @@ export default {
   methods: {
     allMusicList() {
       getAllMusicList().then((res) => {
-        if (res.code !== 200)
-          return this.$message.error("当前网络不佳,请稍后重试");
+        if (res.code !== 200) return this.$message.error("当前网络不佳,请稍后重试");
         this.musicList = res.list;
         console.log(this.musicList);
       });

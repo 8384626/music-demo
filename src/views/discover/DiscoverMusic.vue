@@ -18,9 +18,9 @@ export default {
         { id: 1, link: "/discover/personal", name: "个性推荐" },
         { id: 2, link: "/discover/category", name: "歌单" },
         { id: 3, link: "/discover/ranklist", name: "排行榜" },
-        { id: 4, link: "/discover/artist", name: "歌手" },
-        { id: 5, link: "/discover/newsongs", name: "最新音乐" },
-        { id: 6, link: "/discover/mv", name: "MV" },
+        { id: 4, link: "/discover/singer", name: "歌手" },
+        { id: 5, link: "/discover/newsongs", name: "新歌速递" },
+        { id: 6, link: "/discover/recmv", name: "推荐MV" },
       ],
     };
   },

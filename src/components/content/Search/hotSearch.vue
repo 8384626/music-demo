@@ -32,7 +32,6 @@ export default {
       TopSearch().then((res) => {
         if(res.code === 200){
           this.topSearchList = res.data
-          console.log(this.topSearchList);
         }
       });
     },
