@@ -3,7 +3,7 @@
     <dl>
       <router-link :to="item.link" v-for="(item,index) in menuList" :key="item.id">
         <dd
-          :class="{ title: item.image == '', action: currentId == item.id }"
+          :class="{ title: item.image == '', action: $store.state.leftMenuId == item.id }"
           @click="currentClick(index)"
         >
           <div v-if="item.image">
@@ -66,13 +66,12 @@ export default {
           text: "下载管理",
         },
       ],
-      currentId: 2,
     };
   },
   methods: {
     currentClick(index) {
       if (this.menuList[index].image == "") return;
-      this.currentId = this.menuList[index].id;
+      this.$store.commit('setLeftMenuId', this.menuList[index].id);
     },
   },
 };

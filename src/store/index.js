@@ -13,6 +13,8 @@ export default new Vuex.Store({
     isShowLogin: false,
     // 记录当前controltab的ID
     ControlTabCurrentId:1,
+    // 记录当前leftmenu的Id
+    leftMenuId:2
   },
   mutations: {
     showLogin(state){
@@ -24,6 +26,9 @@ export default new Vuex.Store({
     },
     setConrtrolTabCurrentId(state,payload){
       state.ControlTabCurrentId = payload
+    },
+    setLeftMenuId(state,payload){
+      state.leftMenuId = payload
     }
   },
   actions: {

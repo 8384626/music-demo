@@ -7,7 +7,9 @@
       </div>
       <img :src="item.cover" alt="" />
       <div class="desc">
-        <p>{{ item.name }}</p>
+        <div class="desc-title">
+          <span>{{ item.name }}</span>
+        </div>
         <span>{{ item.artist }}</span>
       </div>
     </div>
@@ -36,15 +38,17 @@ export default {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 .mv-item {
+  position: relative;
   width: 230px;
   margin-top: 5px;
-  position: relative;
+  margin-left: 15px;
 }
 .mv-item img {
   width: 230px;
+  height: 129px;
 }
 .mv-item p {
   white-space: nowrap;
@@ -70,5 +74,15 @@ export default {
 .mv-item .count img {
   height: 100%;
   margin-left: 2px;
+}
+.desc{
+  margin: 0 0 20px 0 ;
+}
+.desc-title{
+  margin: 5px 0 10px 0;
+}
+.desc-title span{
+  font-size:16px;
+  color: #f1f1f1;
 }
 </style>

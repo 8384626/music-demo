@@ -11,6 +11,7 @@ const Songer=() =>import('views/discover/ChildrenRoute/Singer')
 const NewSongs=()=>import('views/discover/ChildrenRoute/NewSongs')
 const RecMv=()=>import('views/discover/ChildrenRoute/RecMv')
 
+const NewMv=() =>import('views/newmv/NewMv')
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
         component:RecMv
       }
     ]
+  },
+  {
+    path:'/newmv',
+    component:NewMv
   }
 ]
 

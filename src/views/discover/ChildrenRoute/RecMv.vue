@@ -82,7 +82,7 @@ export default {
 .scroll-content{
   height: calc(100vh - 180px);
   overflow-y: scroll;
-  padding: 0 200px;
+  padding: 0 150px;
 }
 .scroll-content::-webkit-scrollbar {
   display: none;
