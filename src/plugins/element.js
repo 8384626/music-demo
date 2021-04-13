@@ -8,7 +8,8 @@ import {
   Message,
   Carousel,
   CarouselItem,
-  InfiniteScroll
+  InfiniteScroll,
+  Slider
 } from "element-ui";
 
 // 头像
@@ -26,3 +27,6 @@ Vue.use(CarouselItem)
 
 // 滚动加载更多
 Vue.use(InfiniteScroll);
+
+// 滑动条
+Vue.use(Slider);

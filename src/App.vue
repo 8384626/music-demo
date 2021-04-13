@@ -3,19 +3,22 @@
     <nav-bar></nav-bar>
     <menu-left></menu-left>
     <Main></Main>
+    <play-music></play-music>
   </div>
 </template>
 <script>
 import NavBar from "components/content/NavBar/NavBar";
 import Main from "components/content/Main.vue";
-import MenuLeft from './components/content/MenuLeft/MenuLeft.vue';
+import MenuLeft from 'components/content/MenuLeft/MenuLeft.vue';
+import PlayMusic from 'components/content/PlayMusic/PlayMusic.vue';
 
 export default {
   name: "App",
   components: {
     NavBar,
     Main,
-    MenuLeft
+    MenuLeft,
+    PlayMusic
   },
 };
 </script>

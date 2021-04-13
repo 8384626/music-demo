@@ -80,8 +80,8 @@ export default {
 <style scoped>
 .menuleft {
   float: left;
-  width: 300px;
-  height: calc(100% - 70px);
+  width: 200px;
+  height: calc(100% - 120px);
   background-color: #181818;
 }
 dl {

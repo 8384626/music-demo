@@ -11,6 +11,8 @@ const Songer=() =>import('views/discover/ChildrenRoute/Singer')
 const NewSongs=()=>import('views/discover/ChildrenRoute/NewSongs')
 const RecMv=()=>import('views/discover/ChildrenRoute/RecMv')
 
+const MusicDetailList=() =>import('views/musicdetaillist/musicDetailList')
+
 const NewMv=() =>import('views/newmv/NewMv')
 
 const routes = [
@@ -55,6 +57,10 @@ const routes = [
   {
     path:'/newmv',
     component:NewMv
+  },
+  {
+    path:'/muscidetaillist/:id/:time',
+    component:MusicDetailList
   }
 ]
 

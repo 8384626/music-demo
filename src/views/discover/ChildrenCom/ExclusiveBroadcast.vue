@@ -41,6 +41,7 @@ export default {
   position: relative;
   width: 300px;
   overflow: hidden;
+  margin-right: 5px;
 }
 .item img {
   width: 300px;

@@ -33,7 +33,8 @@ export default {
   },
   methods: {
     entryDetail(index) {
-      console.log(this.recMusicList[index].id);
+      // this.$router.push(`/muscidetaillist/${this.musicList[index].id}/`+new Date().getTime())
+      this.$router.push('/muscidetaillist/'+this.musicList[index].id+'/'+new Date().getTime())
     },
     getImgUrl(item) {
       return item.picUrl || item.coverImgUrl;

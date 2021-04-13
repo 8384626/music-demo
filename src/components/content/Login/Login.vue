@@ -81,6 +81,9 @@ export default {
         console.log(res);
         this.$store.commit("showLogin");
         this.$store.commit('addUserInfo', res);
+        sessionStorage.setItem("cookie", res.cookie)
+        // docCookies.setItem(cookie,res.cookie)
+        // document.cookie =`cookie=${res.cookie}`
         this.$message.success("登录成功");
         this.ruleForm.name=''
         this.ruleForm.pass=''
