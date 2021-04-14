@@ -13,11 +13,11 @@ export default {
   name: "Progress",
   data() {
     return {
-      proLine: 0,
-      proLoad: 0,
+      proLine: 105,
+      proLoad: 105,
       width: 0,
       offsetLeft: 0,
-      scale: 0,
+      scale: 0.80
     };
   },
   methods: {
@@ -35,6 +35,10 @@ export default {
       this.proLoad = changeX;
     },
   },
+  mounted(){
+    console.log('##');
+    console.log(this.$parent.setVolume(this.scale));
+  }
 };
 </script>
 <style scoped>

@@ -81,7 +81,7 @@ export default {
 .menuleft {
   float: left;
   width: 200px;
-  height: calc(100% - 120px);
+  height: calc(100% - 114px);
   background-color: #181818;
 }
 dl {

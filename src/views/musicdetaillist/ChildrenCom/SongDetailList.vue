@@ -63,9 +63,14 @@ export default {
       let currentIndex = i + 1;
       return currentIndex < 10 ? "0" + currentIndex : currentIndex;
     },
-    currentClick(i){
-      this.playIndex = i
-    }
+    currentClick(i) {
+      this.playIndex = i;
+      if (this.$parent.$el.className.indexOf("play-music-list") != -1) {
+        this.$bus.$emit("PlayMusicListItem", i);
+        return;
+      }
+      this.$emit("songItemClick", i);
+    },
   },
 };
 </script>

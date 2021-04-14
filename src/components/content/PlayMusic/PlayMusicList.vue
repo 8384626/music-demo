@@ -26,9 +26,6 @@ export default {
       }
     }
   },
-  updated() {
-    this.$refs.scroll.refresh();
-  },
   methods: {
     exist() {
       this.$parent.isMusicList = false;

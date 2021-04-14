@@ -27,13 +27,13 @@
               </h2>
             </div>
             <div class="lyric">
-              <Lyric :lyric="lyric" />
+              <Lyric :lyric="lyric"  ref="playerLyric"/>
             </div>
           </div>
           <div class="clear"></div>
         </div>
         <div class="play-bottom">
-          <commend :commend-list="Commends" />
+          <Comment :commend-list="Commends" />
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
 <script>
 import Comment from "views/musicdetaillist/ChildrenCom/Comment";
 import Lyric from "./Lyric";
-import { getLyric, getMusciComment } from "network/musciDetail";
+import { getMusciComment } from "network/musicDetail";
 export default {
   props: {
     music: {
@@ -87,30 +87,31 @@ export default {
 <style scoped>
 .player {
   width: 100%;
-  height: calc(100vh - 59px - 60px);
+  height: calc(100vh - 114px);
   position: absolute;
-  top: calc(60px + 54px - 100vh);
-  padding: 20px 15%;
+  top: 54px;
   background: linear-gradient(-45deg, #333540, #070708, #333540);
 }
 .player-scroll {
-  width: 100%;
+  position: relative;
+  left: 250px;
+  width: 80%;
   height: 100%;
   overflow-y: scroll;
+  /* padding: 0 250px; */
 }
 .player-scroll::-webkit-scrollbar{
   display: none;
 }
 .player-content {
   width: 100%;
-  height: 405px;
+  height: 455px;
   position: relative;
   /* background: linear-gradient(-45deg, #333540, #070708, #333540); */
 }
 .play-bottom {
-  width: 100%;
+  width: 80%;
   height: 35%;
-  margin-top: -10px;
   padding: 0px 5%;
 }
 .left {

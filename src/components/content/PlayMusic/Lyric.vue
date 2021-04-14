@@ -68,7 +68,6 @@ export default {
       if (this.lyricIndex > this.length - 2) return;
       if (time >= this.lyricArray[this.lyricIndex + 1].time) {
         this.lyricIndex++;
-        this.$refs.scroll.scrollTo(0, -30 * this.lyricIndex, 2000);
       }
     },
     maxScroll(time = 0) {
@@ -81,7 +80,6 @@ export default {
         )
           return;
         this.maxIndex++;
-        this.$refs.scroll.scrollTo(0, -30 * this.maxIndex, 2000);
       }
     },
   },

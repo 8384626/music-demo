@@ -6,42 +6,42 @@
     <div class="detail-top-content">
       <div class="top">
         <span class="icon">歌单</span>
-        <span>{{baseInfo.name}}</span>
+        <span>{{ baseInfo.name }}</span>
         <div class="right">
           <table>
             <tr>
               <td>
                 <div class="right-text">歌曲数</div>
-                {{baseInfo.trackCount}}
+                {{ baseInfo.trackCount }}
               </td>
               <td>
                 <div class="right-text">播放量</div>
-                {{baseInfo.playCount}}
+                {{ baseInfo.playCount }}
               </td>
             </tr>
           </table>
         </div>
       </div>
       <div class="center">
-        <div class="bofang">
+        <div class="bofang" @click="allPlay">
           <img src="~assets/img/musicDetailList/play.svg" alt />
           播放全部
         </div>
         <div class="sub">
           <img src="~assets/img/musicDetailList/collect.svg" alt />
-          收藏({{baseInfo.subscribedCount}})
+          收藏({{ baseInfo.subscribedCount }})
         </div>
         <div class="share">
           <img src="~assets/img/musicDetailList/share.svg" alt />
-          分享({{baseInfo.shareCount}})
+          分享({{ baseInfo.shareCount }})
         </div>
       </div>
       <div class="desc">
         <div class="biaoqian">
           标签：
-          <span>{{baseInfo.tags}}</span>
+          <span>{{ baseInfo.tags }}</span>
         </div>
-        <div class="desc-item">{{baseInfo.title}}</div>
+        <div class="desc-item">{{ baseInfo.title }}</div>
       </div>
     </div>
   </div>
@@ -55,6 +55,11 @@ export default {
       default() {
         return {};
       },
+    },
+  },
+  methods: {
+    allPlay() {
+      this.$emit("allPlay");
     },
   },
 };
@@ -129,7 +134,7 @@ export default {
   padding: 5px;
   color: #4e4e52;
 }
-.right-text{
+.right-text {
   margin-bottom: 5px;
 }
 .desc .desc-item {

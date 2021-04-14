@@ -1,11 +1,25 @@
 <template>
   <div class="detail">
     <div class="detail-content">
-      <music-detail-list :baseInfo="baseInfo"></music-detail-list>
-      <control-tab-bar :list="list" @controlBarClick="controlBarClick"></control-tab-bar>
-      <song-detail-list v-if="isShow === 'music'" :song-list="songList"></song-detail-list>
-      <comment v-if="isShow === 'commend'" :commend-list="commendList" :id="id"></comment>
-      <collect-list v-if="isShow === 'collect'" :collect-list="collectList"></collect-list>
+      <music-detail-list :baseInfo="baseInfo" @allPlay="PlayMusic()"></music-detail-list>
+      <control-tab-bar
+        :list="list"
+        @controlBarClick="controlBarClick"
+      ></control-tab-bar>
+      <song-detail-list
+        v-if="isShow === 'music'"
+        :song-list="songList"
+        @songItemClick="PlayMusic"
+      ></song-detail-list>
+      <comment
+        v-if="isShow === 'commend'"
+        :commend-list="commendList"
+        :id="id"
+      ></comment>
+      <collect-list
+        v-if="isShow === 'collect'"
+        :collect-list="collectList"
+      ></collect-list>
     </div>
   </div>
 </template>
@@ -17,14 +31,16 @@ import {
   getSongDetail,
   songDetail,
   getCommentList,
-  getCollect
+  getCollect,
 } from "network/musicDetail";
 
 import MusicDetailList from "./ChildrenCom/MusicDetailTop";
-import ControlTabBar from './ChildrenCom/ControlTabBar';
-import SongDetailList from './ChildrenCom/SongDetailList.vue';
-import Comment from './ChildrenCom/Comment.vue';
-import CollectList from './ChildrenCom/CollectList.vue';
+import ControlTabBar from "./ChildrenCom/ControlTabBar";
+import SongDetailList from "./ChildrenCom/SongDetailList.vue";
+import Comment from "./ChildrenCom/Comment.vue";
+import CollectList from "./ChildrenCom/CollectList.vue";
+import { indexMixin } from "./indexMixin";
+
 export default {
   data() {
     return {
@@ -33,12 +49,13 @@ export default {
       baseInfo: null,
       list: [],
       songList: [],
-      isShow:'music',
-      limit:30,
-      commendList:[],
-      collectList:[]
+      isShow: "music",
+      limit: 30,
+      commendList: [],
+      collectList: [],
     };
   },
+  mixins: [indexMixin],
   methods: {
     getCurrentDetail() {
       getMusicDetailList(this.id).then((res) => {
@@ -54,18 +71,17 @@ export default {
         }
       });
     },
-    getComment(){
-      getCommentList(this.id,this.limit).then(res=>{
+    getComment() {
+      getCommentList(this.id, this.limit).then((res) => {
         this.commendList = res.comments;
-      })
+      });
     },
-    getCollectList(){
-        getCollect(this.id,30).then(res=>{
-          this.collectList = res.subscribers
-        })
-      
+    getCollectList() {
+      getCollect(this.id, 30).then((res) => {
+        this.collectList = res.subscribers;
+      });
     },
-    controlBarClick(type){
+    controlBarClick(type) {
       this.isShow = type;
     },
   },
@@ -74,17 +90,17 @@ export default {
     ControlTabBar,
     SongDetailList,
     Comment,
-    CollectList
+    CollectList,
   },
   activated() {
     this.id = this.$route.params.id;
     this.getCurrentDetail();
-    this.getComment()
-    this.getCollectList()
+    this.getComment();
+    this.getCollectList();
   },
   deactivated() {
     this.baseInfo = null;
-    this.songList = []
+    this.songList = [];
   },
 };
 </script>
@@ -99,7 +115,7 @@ export default {
   box-sizing: border-box;
 }
 .detail-content {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 160px);
   overflow-y: scroll;
 }
 .detail-content::-webkit-scrollbar {

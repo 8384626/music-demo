@@ -34,6 +34,10 @@ export function getLyric(id){
 export function getMusciComment(id,limit){
   return http.get('/comment/music',{id,limit})
 }
+// 获取歌曲的URL
+export function getSongURL(id){
+  return http.get('/song/url',{id})
+}
 
 // 整理歌曲相关信息
 export class songDetail{
