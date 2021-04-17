@@ -78,7 +78,6 @@ export default {
     Login(data) {
       requestLogin(data).then((res) => {
         if (res.code !== 200) return this.$message.error(res.msg);
-        console.log(res);
         this.$store.commit("showLogin");
         this.$store.commit('addUserInfo', res);
         sessionStorage.setItem("cookie", res.cookie)
@@ -87,7 +86,6 @@ export default {
         this.$message.success("登录成功");
         this.ruleForm.name=''
         this.ruleForm.pass=''
-        console.log(this.$store.state.user);
       });
     },
   },

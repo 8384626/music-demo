@@ -40,7 +40,6 @@ export default {
       getHotTags().then((res) => {
         if (res.code !== 200) return this.$message.error("当前网络不佳,请稍后重试");
         this.HotTags = res.tags;
-        console.log(this.HotTags);
         this.getHotTagsList()
       });
     },
@@ -57,7 +56,6 @@ export default {
         if (res.code !== 200) return this.$message.error("当前网络不佳,请稍后重试");
         this.page++
         this.musicList = res.playlists
-        console.log(this.musicList);
       })
     },
     load(){

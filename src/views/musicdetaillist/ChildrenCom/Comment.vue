@@ -58,7 +58,6 @@ export default {
       return formatDate(new Date(data), "yyyy年MM月dd日 hh:mm:ss");
     },
     pushCommend() {
-      // console.log(this.getCookieValue('cookie'));
       let cookie = sessionStorage.getItem('cookie')
       let time = new Date().getTime();
       if (cookie !== null) {

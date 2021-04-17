@@ -1,6 +1,6 @@
 <template>
   <div class="singer-item" v-if="singerList">
-    <div class="list-item" v-for="(item,index) in singerList" :key="index">
+    <div class="list-item" v-for="(item,index) in singerList" :key="index" @click="enterArtistDetail(item)">
       <img :src="getImgUrl(item)" alt />
       <div class="title">{{item.name}}</div>
     </div>
@@ -21,6 +21,15 @@ export default {
     getImgUrl(item) {
       return item.picUrl || item.coverImgUrl;
     },
+    enterArtistDetail(artist) {
+      this.$router.push({
+        path: "/singer",
+        query: {
+          artist
+        }
+      });
+      this.$store.commit('addArtist',artist);
+    }
   }
 }
 </script>

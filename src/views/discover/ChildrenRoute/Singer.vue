@@ -81,7 +81,6 @@ export default {
         limit: this.limit,
       }).then((res) => {
         this.singerList = res.artists;
-        console.log(this.singerList);
       });
     },
     getSingerListPullUp() {

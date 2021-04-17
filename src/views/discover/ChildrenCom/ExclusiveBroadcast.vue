@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     playMV(id) {
-      console.log(id);
       this.$router.push("/playmv/" + id);
     },
   },

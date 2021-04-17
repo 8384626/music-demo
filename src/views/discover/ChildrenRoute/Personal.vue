@@ -94,7 +94,6 @@ export default {
     // 添加到音乐列表
     playMusic(index) {
       this.musiclist = [];
-      console.log('##',this.muscilist);
       for (let i in this.muscilist) {
         getSongDetail(this.muscilist[i].id).then(res => {
           let song = new songDetail(res.songs);

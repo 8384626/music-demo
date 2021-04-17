@@ -230,7 +230,6 @@ export default {
     // 播放的时候的事件
     playLoad() {
       getLyric(this.playList[this.currentIndex].id).then((res) => {
-        console.log(res);
         this.lyric = res.lrc.lyric;
       });
     },

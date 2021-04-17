@@ -13,8 +13,16 @@ const RecMv=()=>import('views/discover/ChildrenRoute/RecMv')
 
 const MusicDetailList=() =>import('views/musicdetaillist/musicDetailList')
 
+
 const NewMv=() =>import('views/newmv/NewMv')
 const PlayMv=() =>import('views/newmv/PlayMv')
+
+const Singerdetail=() =>import('views/singerdetail/singerDetail')
+const SingerAlbum=() =>import('views/singerdetail/singerRoute/SingerAlbum')
+const SingerMv=() =>import('views/singerdetail/singerRoute/SingerMv')
+const SingerDesc=() =>import('views/singerdetail/singerRoute/SingerDesc')
+const SingerSimi=() =>import('views/singerdetail/singerRoute/SingerSimi')
+
 
 const routes = [
   {
@@ -66,6 +74,32 @@ const routes = [
   {
     path:'/playmv/:id',
     component:PlayMv
+  },
+  {
+    path:'/singer',
+    component:Singerdetail,
+    children:[
+      {
+        path:'/',
+        redirect:'/singer/album'
+      },
+      {
+        path:'/singer/album',
+        component:SingerAlbum
+      },
+      {
+        path:'/singer/mv',
+        component:SingerMv
+      },
+      {
+        path:'/singer/desc',
+        component:SingerDesc
+      },
+      {
+        path:'/singer/simi',
+        component:SingerSimi
+      },
+    ]
   }
 ]
 

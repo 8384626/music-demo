@@ -71,7 +71,6 @@ export default {
     musicCommend() {
       getMusciComment(this.music.id, this.limit * this.page).then((res) => {
         this.Commends = res.comments;
-        console.log(res);
       });
     },
   },

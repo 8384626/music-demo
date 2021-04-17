@@ -106,7 +106,6 @@ export default {
             this.musicList.push(song);
           });
         }
-        // console.log(this.musicList);
       });
     }
   },
