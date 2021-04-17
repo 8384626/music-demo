@@ -1,10 +1,15 @@
 <template>
-  <div class="simi" v-if="item != null">
-    <div class="simi-item" @click="playMV()">
+  <div class="relevant">
+    <div
+      class="relevant-item"
+      v-for="(item, index) in mvList"
+      :key="index"
+      @click="playMV(item.id)"
+    >
       <div class="left">
-        <img :src="item.cover" alt />
+        <img :src="item.cover" alt="" />
         <div class="count">
-          <img src="~assets/img/recmv/rec-mv.svg" alt />
+          <img src="~assets/img/recmv/mv-video-icon.svg" alt="" />
           <div class="play-count">{{ item.count }}</div>
         </div>
       </div>
@@ -18,29 +23,30 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  name: "SimiMvItem",
   props: {
-    item: {
-      type: Object,
+    mvList: {
+      type: Array,
       default() {
-        return {};
+        return [];
       },
     },
   },
   methods: {
-    playMV(){
-        this.$router.push('/playmv/'+this.item.id)
-    }
+    playMV(id) {
+      this.$router.push("/playmv/" + id);
+    },
   },
 };
 </script>
+
 <style scoped>
-.simi {
+.relevant {
   width: 100%;
 }
-.simi-item {
+.relevant-item {
   width: 100%;
   margin-top: 10px;
   display: flex;
@@ -64,7 +70,7 @@ export default {
 }
 .left .count img {
   height: 100%;
-  margin-left: 2px;
+  margin-right: 3px;
 }
 .right {
   flex: 1;

@@ -1,6 +1,6 @@
 <template>
   <div class="mv-list" v-if="mvList.length != 0">
-    <div class="mv-item" v-for="(item, index) in mvList" :key="index">
+    <div class="mv-item" v-for="(item, index) in mvList" :key="index" @click="playMV(item.id)">
       <div class="count">
         <img src="~assets/img/recmv/rec-mv.svg" alt />
         <div class="play-count">{{ item.count }}</div>
@@ -27,9 +27,9 @@ export default {
     },
   },
   methods: {
-    // playMV(id){
-    //     this.$router.push('/playmv/'+id)
-    // }
+    playMV(id){
+        this.$router.push('/playmv/'+id)
+    }
   },
 };
 </script>

@@ -4,7 +4,7 @@
       <div class="new-mv">
         <div class="title">
           最新MV
-          <div class="right">
+          <div class="right" @click="allMv()">
             <span>更多</span>
             <img src="~assets/img/recmv/rec-mv-right-arrow.svg" alt />
           </div>
@@ -14,7 +14,7 @@
       <div class="rankList">
         <div class="title">
           MV排行榜
-          <div class="right">
+          <div class="right" @click="allMv()">
             <span>更多</span>
             <img src="~assets/img/recmv/rec-mv-right-arrow.svg" alt />
           </div>
@@ -51,13 +51,14 @@ export default {
             this.topMv.push(mv);
           }
         });
-        console.log(this.mvList);
-        console.log(this.topMv);
       });
     },
     setControlTabCurrentId(){
       this.$store.commit("setConrtrolTabCurrentId", 6);
-    }
+    },
+    allMv() {
+      this.$router.push("/newmv");
+    },
   },
   components: {
     MvItem,

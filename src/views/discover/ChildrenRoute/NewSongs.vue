@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="songs-scroll">
-      <div class="content">
+      <div class="content"  @click="musicItemClick(0)">
         <div class="play-all-music">
           <img src="~assets/img/newsongs/paly-all-music.svg" alt />
           <span>播放全部</span>
@@ -20,7 +20,7 @@
         <div class="music" v-infinite-scroll="load" infinite-scroll-delay="500">
           <table>
             <tbody>
-              <tr v-for="(item, index) in songsList" :key="index" :class="{backColor:setBackColor(index)}">
+              <tr v-for="(item, index) in musiclist" :key="index" :class="{backColor:setBackColor(index)}" @click="musicItemClick(index)">
                 <td>{{ getterIndex(index) }}</td>
                 <td>
                   <div class="bagc">
@@ -46,6 +46,8 @@
 import { getSongsId } from "network/newsongs";
 import { getMusicDetail, musicDetail } from "network/ranklist";
 
+import { indexMixin } from "views/musicdetaillist/indexMixin";
+
 export default {
   data() {
     return {
@@ -59,7 +61,7 @@ export default {
       typeIndex: 0,
       page: 1,
       list: [],
-      songsList: [],
+      musiclist: [],
     };
   },
   methods: {
@@ -68,13 +70,13 @@ export default {
       this.getSongsList(this.page,true)
     },
     getSongsList(page = this.page,clear=false) {
-      if(clear) this.songsList=[]
+      if(clear) this.musiclist=[]
       getSongsId(this.typeList[this.typeIndex].value).then((res) => {
         this.list = res.data.slice(0, page * 30);
         for (let i of this.list) {
           getMusicDetail(i.id).then((res) => {
             let song = new musicDetail(res.songs);
-            this.songsList.push(song);
+            this.musiclist.push(song);
           });
         }
       });
@@ -91,8 +93,12 @@ export default {
     },
     setControlTabCurrentId(){
       this.$store.commit("setConrtrolTabCurrentId", 5);
+    },
+    musicItemClick(index) {
+      this.PlayMusic(index);
     }
   },
+  mixins: [indexMixin],
   created() {
     this.getSongsList();
   },

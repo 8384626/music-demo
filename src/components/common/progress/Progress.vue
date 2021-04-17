@@ -34,10 +34,6 @@ export default {
       this.proLine = changeX;
       this.proLoad = changeX;
     },
-  },
-  mounted(){
-    console.log('##');
-    console.log(this.$parent.setVolume(this.scale));
   }
 };
 </script>

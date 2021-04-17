@@ -1,6 +1,6 @@
 <template>
   <div class="lyric" v-if="lyric != ''">
-    <div class="lyric-scroll">
+    <scroll class="lyric-scroll" ref="scroll">
       <ul>
         <li
           v-for="(item, index) in lyricArray"
@@ -10,13 +10,14 @@
           {{ item.lyric }}
         </li>
       </ul>
-    </div>
+    </scroll>
   </div>
 </template>
-
 <script>
-import {lyricItem} from "./playList"
+import Scroll from "components/common/scroll/Scroll";
+import { lyricItem } from "./playList";
 export default {
+  name: "Lyric",
   props: {
     lyric: {
       type: String,
@@ -33,13 +34,16 @@ export default {
       length: 0,
     };
   },
+  components: {
+    Scroll,
+  },
   methods: {
     parseLyric(lyric) {
       let RegExp = /\[(\d*:\d*\.\d*)\]/;
-      let arr = [];
-      let timeArr = [];
-      let lyricArr = [];
-      let mergeArr = [];
+      let arr = [],
+        timeArr = [],
+        lyricArr = [],
+        mergeArr = [];
 
       arr = lyric.split("\n");
 
@@ -68,6 +72,7 @@ export default {
       if (this.lyricIndex > this.length - 2) return;
       if (time >= this.lyricArray[this.lyricIndex + 1].time) {
         this.lyricIndex++;
+        this.$refs.scroll.scrollTo(0, -30 * this.lyricIndex,5000);
       }
     },
     maxScroll(time = 0) {
@@ -80,19 +85,23 @@ export default {
         )
           return;
         this.maxIndex++;
+        this.$refs.scroll.scrollTo(0, -30 * this.maxIndex, 15000);
       }
+    },
+  },
+  watch: {
+    lyric() {
+      this.lyricIndex = -1;
+      this.maxIndex = 0;
+      this.parseLyric(this.lyric);
     },
   },
 };
 </script>
-
 <style scoped>
 .lyric-scroll {
   height: 100%;
-  overflow-y: scroll;
-}
-.lyric-scroll::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
 }
 .lyric ul {
   text-align: center;
@@ -104,6 +113,6 @@ export default {
 }
 .action {
   font-size: 18px;
-  color: #6a96e6;
+  color: #b82525;
 }
 </style>

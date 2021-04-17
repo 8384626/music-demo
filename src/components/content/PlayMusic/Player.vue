@@ -71,6 +71,7 @@ export default {
     musicCommend() {
       getMusciComment(this.music.id, this.limit * this.page).then((res) => {
         this.Commends = res.comments;
+        console.log(res);
       });
     },
   },
@@ -78,8 +79,10 @@ export default {
     Comment,
     Lyric,
   },
-  created() {
-    this.musicCommend();
+  watch: {
+    lyric() {
+      this.musicCommend();
+    }
   },
 };
 </script>
@@ -193,16 +196,16 @@ export default {
 }
 .top {
   color: #d5d5d6;
+  text-align: center;
   font-weight: 300;
   padding: 10px 0px;
-}
-.top h2 span {
-  margin-left: -8%;
+  transform: translateX(-200px)
 }
 .lyric {
   padding: 5px 0px;
   height: calc(100% - 55px);
   color: #5e6062;
+  transform: translateX(-110px)
 }
 .slide-enter-active,
 .slide-leave-active {

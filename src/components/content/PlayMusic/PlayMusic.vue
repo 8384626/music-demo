@@ -23,7 +23,7 @@
     </div>
     <div class="music-control">
       <!-- 下部播放音乐上一首/播放（暂停）/下一首 -->
-      <div class="player-music-left">
+      <div class="player-music-left" v-if="playList[currentIndex] != null">
         <div class="pre" @click="preMusic">
           <img src="~assets/img/playmusic/previous.svg" alt />
         </div>
@@ -35,7 +35,7 @@
           <img src="~assets/img/playmusic/next.svg" alt />
         </div>
       </div>
-      <div class="play-music-right">
+      <div class="play-music-right" v-if="playList[currentIndex] != null">
         <audio
           :src="playList[currentIndex].src"
           autoplay
@@ -85,20 +85,6 @@
             </a>
             <a href="#" title="单曲循环" v-show="schemaIndex == 2">
               <img src="~assets/img/playmusic/single-play.svg" />
-            </a>
-          </div>
-          <div class="music-lyric" @click="toggleLyric()">
-            <a href="#" title="歌词">
-              <img
-                src="~assets/img/playmusic/init-lyric.svg"
-                v-show="!isLyric"
-              />
-            </a>
-            <a href="#" title="歌词">
-              <img
-                src="~assets/img/playmusic/click-lyric.svg"
-                v-show="isLyric"
-              />
             </a>
           </div>
           <div class="music-list" @click="toggleMusicList()">
@@ -235,17 +221,16 @@ export default {
             );
             break;
           case 2:
-            this.setMusicCurrent(0)
-            this.$refs.audio.play()
+            this.setMusicCurrent(0);
+            this.$refs.audio.play();
             break;
         }
       }, 2000);
     },
-    // 立即播放的时候
-    playLoad(){},
     // 播放的时候的事件
     playLoad() {
       getLyric(this.playList[this.currentIndex].id).then((res) => {
+        console.log(res);
         this.lyric = res.lrc.lyric;
       });
     },
@@ -269,19 +254,19 @@ export default {
     toggleVolumn() {
       this.isVolumn = !this.isVolumn;
       if (this.isVolumn) {
-        this.$refs.audio.volume = 0.00;
+        this.$refs.audio.volume = 0.0;
       } else {
         this.$refs.audio.volume = this.$refs.volume_pro.scale;
-        this.$refs.volume_pro && this.$refs.volume_pro.setProgress(this.$refs.volume_pro.scale);
+        this.$refs.volume_pro &&
+          this.$refs.volume_pro.setProgress(this.$refs.volume_pro.scale);
       }
     },
     // 控制声音大小
     setVolume(scale) {
-      if(this.isVolumn){
-        this.$refs.audio.volume = 0.00;
-      }else{
+      if (this.isVolumn) {
+        this.$refs.audio.volume = 0.0;
+      } else {
         this.$refs.audio.volume = scale;
-
       }
     },
     // 控制播放模式
@@ -315,14 +300,13 @@ export default {
       this.playList = this.playList.sort((a, b) => {
         return a.index - b.index;
       });
-
       this.setCurrentIndex(index);
     });
 
     this.$bus.$on("PlayMusicListItem", (index) => {
       this.setCurrentIndex(index);
     });
-  }
+  },
 };
 </script>
 

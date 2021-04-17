@@ -1,8 +1,8 @@
 <template>
   <div class="new-songs">
     <div class="content">
-      <div class="item" v-for="(item,index) in newsongList" :key="index">
-        <div class="number">{{getterIndex(index)}}</div>
+      <div class="item" v-for="(item, index) in newsongList" :key="index" @click="playMusic(index)">
+        <div class="number">{{ getterIndex(index) }}</div>
         <div class="title">
           <img :src="item.picUrl" alt />
           <div class="icon">
@@ -10,9 +10,9 @@
           </div>
         </div>
         <div class="mess">
-          <div>{{item.name}}</div>
+          <div>{{ item.name }}</div>
           <br />
-          <div class="bottom">{{item.song.album.company}}</div>
+          <div class="bottom">{{ item.song.album.company }}</div>
         </div>
       </div>
     </div>
@@ -21,20 +21,23 @@
 
 <script>
 export default {
-  props:{
-    newsongList:{
-      type:Array,
-      default(){
-        return []
-      }
+  props: {
+    newsongList: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+  methods: {
+    getterIndex(index) {
+      return index + 1 < 10 ? "0" + (index + 1) : index;
+    },
+    playMusic(index) {
+      this.$emit("playMusic", index);
     }
   },
-  methods:{
-    getterIndex(index){
-      return index + 1 < 10? '0'+(index+1):index 
-    }
-  }
-}
+};
 </script>
 
 <style scoped>
@@ -53,7 +56,7 @@ export default {
   height: 70px;
   display: flex;
 }
-.item:hover{
+.item:hover {
   background-color: hsl(0, 1%, 29%);
 }
 .number {
@@ -79,7 +82,7 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   margin: auto;
 }
 .icon img {

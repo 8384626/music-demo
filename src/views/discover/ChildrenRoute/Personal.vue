@@ -16,7 +16,9 @@
           class="person-rightAllows"
           src="~assets/img/discover/right-arrows.svg"
         />
-        <exclusive-broadcast :broadcastList="broadcastList"></exclusive-broadcast>
+        <exclusive-broadcast
+          :broadcastList="broadcastList"
+        ></exclusive-broadcast>
       </div>
       <div class="new-song">
         <span class="per-title">最新音乐</span>
@@ -24,7 +26,7 @@
           class="person-rightAllows"
           src="~assets/img/discover/right-arrows.svg"
         />
-        <new-song-list :newsongList="newsongList"></new-song-list>
+        <new-song-list :newsongList="muscilist" @playMusic="playMusic"></new-song-list>
       </div>
     </div>
   </div>
@@ -35,12 +37,16 @@ import {
   getBannerSwiper,
   getRecMusicList,
   getExcBroadcast,
-  getNewSong
+  getNewSong,
 } from "network/discover";
+import { getSongDetail, songDetail } from "network/musicDetail";
+
 import TopSwiper from "../ChildrenCom/TopSwiper.vue";
 import MusicList from "../ChildrenCom/MusicList";
 import ExclusiveBroadcast from "../ChildrenCom/ExclusiveBroadcast.vue";
-import NewSongList from '../ChildrenCom/NewSongList.vue';
+import NewSongList from "../ChildrenCom/NewSongList.vue";
+
+import { indexMixin } from "views/musicdetaillist/indexMixin";
 
 export default {
   name: "",
@@ -49,7 +55,7 @@ export default {
       banners: [],
       recMusicList: [],
       broadcastList: [],
-      newsongList:[]
+      muscilist: [],
     };
   },
   methods: {
@@ -79,13 +85,28 @@ export default {
       });
     },
     // 获取最新音乐
-    getNewSong(){
-      getNewSong().then(res=>{
+    getNewSong() {
+      getNewSong().then((res) => {
         if (res.code !== 200) return this.$message.error("当前网络不良");
-        this.newsongList = res.result
-      })
+        this.muscilist = res.result;
+      });
+    },
+    // 添加到音乐列表
+    playMusic(index) {
+      this.musiclist = [];
+      console.log('##',this.muscilist);
+      for (let i in this.muscilist) {
+        getSongDetail(this.muscilist[i].id).then(res => {
+          let song = new songDetail(res.songs);
+          this.musiclist.push(song);
+          if (i == this.muscilist.length - 1) {
+            this.PlayMusic(index);
+          }
+        });
+      }
     }
   },
+  mixins: [indexMixin],
   components: {
     TopSwiper,
     MusicList,
@@ -96,7 +117,7 @@ export default {
     this.getBanner();
     this.getRecMusic();
     this.getExcBroadcast();
-    this.getNewSong()
+    this.getNewSong();
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
@@ -121,7 +142,7 @@ export default {
 }
 
 /* 每个模块的单独设置 */
-.exclusive-broadcast{
+.exclusive-broadcast {
   margin: 10px 0 0 0;
 }
 /* 模块的字体和右箭头 */

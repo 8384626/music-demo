@@ -1,12 +1,17 @@
 <template>
   <div class="exc-broadcast">
     <div class="content">
-      <div class="item" v-for="(item,index) in broadcastList" :key="index">
+      <div
+        class="item"
+        v-for="(item, index) in broadcastList"
+        :key="index"
+        @click="playMV(item.id)"
+      >
         <div class="loco">
           <img src="~assets/img/discover/exc-videoicon.svg" alt />
         </div>
         <img :src="item.picUrl" alt />
-        <div class="bottom">{{item.name}}</div>
+        <div class="bottom">{{ item.name }}</div>
       </div>
     </div>
   </div>
@@ -14,15 +19,21 @@
 
 <script>
 export default {
-  props:{
-    broadcastList:{
-      type:Array,
-      default(){
-        return []
-      }
-    }
-  }
-}
+  props: {
+    broadcastList: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+  methods: {
+    playMV(id) {
+      console.log(id);
+      this.$router.push("/playmv/" + id);
+    },
+  },
+};
 </script>
 
 <style scoped>

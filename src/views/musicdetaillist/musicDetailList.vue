@@ -8,7 +8,7 @@
       ></control-tab-bar>
       <song-detail-list
         v-if="isShow === 'music'"
-        :song-list="songList"
+        :musiclist="musiclist"
         @songItemClick="PlayMusic"
       ></song-detail-list>
       <comment
@@ -48,7 +48,7 @@ export default {
       MusicDetailList: null,
       baseInfo: null,
       list: [],
-      songList: [],
+      musiclist: [],
       isShow: "music",
       limit: 30,
       commendList: [],
@@ -66,7 +66,7 @@ export default {
         for (let i of this.MusicDetailList.playlist.trackIds) {
           getSongDetail(i.id).then((res) => {
             let song = new songDetail(res.songs);
-            this.songList.push(song);
+            this.musiclist.push(song);
           });
         }
       });
@@ -100,7 +100,7 @@ export default {
   },
   deactivated() {
     this.baseInfo = null;
-    this.songList = [];
+    this.musiclist = [];
   },
 };
 </script>

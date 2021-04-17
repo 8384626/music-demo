@@ -1,5 +1,9 @@
 <template>
-  <div class="rank-list-item" v-if="musicDetailList !== null && rankId !== 0">
+  <div
+    class="rank-list-item"
+    v-if="musicDetailList !== null && rankId !== 0"
+    @click="enterDetail()"
+  >
     <div
       class="rank-item-top"
       :style="{
@@ -67,15 +71,20 @@ export default {
   data() {
     return {
       musicDetailList: null,
-      musicList:[]
+      musicList: [],
     };
   },
-  methods:{
+  methods: {
     setBackColor(index) {
       if (index % 2 != 0) {
         return true;
       }
       return false;
+    },
+    enterDetail() {
+      this.$router.push(
+        "/muscidetaillist/" + this.rankId + "/" + new Date().getTime()
+      );
     },
   },
   computed: {
@@ -87,12 +96,12 @@ export default {
   mounted() {
     if (this.rankId !== 0) {
       getMusicName({ id: this.rankId }).then((res) => {
-        if (res.code !== 200) return this.$message.error("当前网络不佳,请稍后重试");
-        this.musicDetailList = res
-         /**遍历查询歌单所有歌曲详情 */
+        if (res.code !== 200)
+          return this.$message.error("当前网络不佳,请稍后重试");
+        this.musicDetailList = res;
+        /**遍历查询歌单所有歌曲详情 */
         for (let i of this.musicDetailList.playlist.trackIds.slice(0, 9)) {
-          getMusicDetail(i.id).then(res => {
-
+          getMusicDetail(i.id).then((res) => {
             let song = new musicDetail(res.songs);
             this.musicList.push(song);
           });
