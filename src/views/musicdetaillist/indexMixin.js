@@ -7,8 +7,8 @@ export const indexMixin = {
       let musiclist;
       if (this.musiclist.length >= 200) {
         musiclist = this.musiclist.slice(0, 199);
-      } else musiclist = this.musiclist ;
-      let url = null
+      } else musiclist = this.musiclist;
+      let url = null;
       let currentLength = 0;
       let playlist = [];
       for (let i = 0, length = musiclist.length; i < length; i++) {
