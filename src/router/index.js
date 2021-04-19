@@ -23,6 +23,8 @@ const SingerMv=() =>import('views/singerdetail/singerRoute/SingerMv')
 const SingerDesc=() =>import('views/singerdetail/singerRoute/SingerDesc')
 const SingerSimi=() =>import('views/singerdetail/singerRoute/SingerSimi')
 
+const SearchList=() =>import('views/search/SearchList')
+
 
 const routes = [
   {
@@ -100,7 +102,11 @@ const routes = [
         component:SingerSimi
       },
     ]
-  }
+  },
+  {
+    path:'/search/:key',
+    component:SearchList
+  },
 ]
 
 const router = new VueRouter({

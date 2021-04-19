@@ -7,8 +7,9 @@
         v-model="searchText"
         @focus="topSeacrchIsShow = true"
         @blur="topSeacrchIsShow = false"
+        @keydown.enter="keyEnter()"
       />
-      <div class="search-icon">
+      <div class="search-icon" @click="keyEnter()">
         <img src="~assets/img/navbar/search.svg" alt="" />
       </div>
     </div>
@@ -24,6 +25,14 @@ export default {
       searchText: "",
       topSeacrchIsShow: false,
     };
+  },
+  methods:{
+    keyEnter(){
+        if(this.searchText === ''||this.searchText === null) return ;
+        this.$router.push("/search/" + this.searchText); 
+        this.searchText = '';
+        this.topSeacrchIsShow=false;
+    },
   },
   components: {
     hotSearch,

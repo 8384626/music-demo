@@ -29,3 +29,7 @@ export function getAlbum(id){
 export function getSingerMv(id){
   return http.get('/artist/mv',{id})
 }
+// 获取相似歌手 
+export function getSimiSinger(id){
+  return http.get('/simi/artist',{id})
+}

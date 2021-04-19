@@ -81,14 +81,12 @@ export default {
   created() {
     if (this.album != null) {
       getAlbum(this.album.id).then((res) => {
-        console.log(res);
         for (let i of res.songs) {
           getSongDetail(i.id).then((res) => {
             let song = new songDetail(res.songs);
             this.musiclist.push(song);
           });
         }
-        console.log('##',this.musiclist);
       });
       this.$bus.$on("Playing", (index, path) => {
         if (this.$route.path == path) {
