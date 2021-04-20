@@ -17,20 +17,26 @@
           {{ item }}
         </div>
       </div>
+      <music-item
+        :musiclist="musiclist"
+        @songItemClick="musicItemClick"
+        v-show="isShow == 'music'"
+      />
+      <artist-item :artistslist="artistslist" v-show="isShow == 'artist'" />
     </div>
-    <music-item :musiclist="musiclist" @musicItemClick="musicItemClick" v-show="isShow=='music'" />
-    <artist-item :artistslist="artistslist" v-show="isShow=='artist'" />
   </div>
 </template>
 
 <script>
-import { getSearch } from 'network/search'
-import { getSongDetail, songDetail} from 'network/musicDetail'
+import { getSearch } from "network/search";
+import { getSongDetail, songDetail } from "network/musicDetail";
 
-import { distinct } from '../../common/tool'
+import { distinct } from "../../common/tool";
 
 import MusicItem from "views/musicdetaillist/ChildrenCom/SongDetailList";
 import ArtistItem from "./childComps/ArtistItem";
+
+import { indexMixin } from 'views/musicdetaillist/indexMixin'
 
 export default {
   data() {
@@ -56,24 +62,26 @@ export default {
           break;
       }
     },
+    musicItemClick(index) {
+      this.PlayMusic(index);
+    }
   },
-  components:{
+  mixins:[indexMixin],
+  components: {
     MusicItem,
-    ArtistItem
+    ArtistItem,
   },
-  activated(){
+  activated() {
     this.key = this.$route.params.key;
-    console.log(this.key);
     if (this.key != null && this.key != "") {
-      getSearch(this.key).then(res => {
-
+      getSearch(this.key).then((res) => {
         let list = res.result.songs;
         for (let i in list) {
           this.artistslist.push(list[i].artists[0]);
           this.mlist.push(list[i].id);
           if (i == list.length - 1) {
             for (let i of this.mlist) {
-              getSongDetail(i).then(res => {
+              getSongDetail(i).then((res) => {
                 let song = new songDetail(res.songs);
                 this.musiclist.push(song);
               });
@@ -83,7 +91,7 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 
@@ -95,7 +103,7 @@ export default {
 }
 .search-scroll {
   height: calc(100vh - 230px);
-  padding: 20px 200px;
+  padding: 20px 50px;
   overflow-y: scroll;
 }
 .search-scroll::-webkit-scrollbar {

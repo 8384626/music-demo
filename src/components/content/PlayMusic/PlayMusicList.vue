@@ -9,7 +9,7 @@
     </div>
     <div class="play-music-list-scroll">
       <div class="list">
-        <music-item :song-list="musicList" />
+        <music-item :musiclist="musicList" />
       </div>
     </div>
   </div>

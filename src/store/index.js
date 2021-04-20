@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,6 +17,8 @@ export default new Vuex.Store({
     // 记录当前leftmenu的Id
     leftMenuId:2,
     artist:null,
+    // 获取用户歌单
+    SongList:[]
   },
   mutations: {
     showLogin(state){
@@ -33,6 +36,10 @@ export default new Vuex.Store({
     },
     addArtist(state,payload){
       state.artist = payload
+    },
+    addSonglist(state,payload){
+      state.SongList = payload
+      console.log(state.SongList);
     }
   },
   actions: {

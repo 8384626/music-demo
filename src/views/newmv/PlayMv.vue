@@ -132,6 +132,7 @@ export default {
   height: 100%;
   padding: 0px 150px;
   overflow: hidden;
+  transform: translateY(-100%);
 }
 .play-mv-scroll {
   height: calc(100vh - 114px);

@@ -1,12 +1,11 @@
 <template>
-  <div class="search">
+  <div class="search" @mouseleave="topSeacrchIsShow = false">
     <div class="search-item">
       <input
         type="text"
         class="iptSearch"
         v-model="searchText"
         @focus="topSeacrchIsShow = true"
-        @blur="topSeacrchIsShow = false"
         @keydown.enter="keyEnter()"
       />
       <div class="search-icon" @click="keyEnter()">

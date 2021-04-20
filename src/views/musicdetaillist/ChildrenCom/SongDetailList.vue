@@ -18,7 +18,7 @@
           :class="{ bgchange: getterColor(i) }"
           @click="currentClick(i)"
         >
-          <td :class="{ curFont: playIndex == index }">
+          <td :class="{ curFont: playIndex == i }">
             <span v-show="playIndex !== i">{{ getterIndex(i) }}</span>
             <div class="curPlay" v-show="playIndex === i">
               <img src="~assets/img/musicDetailList/trm-music.svg" alt />
@@ -72,12 +72,16 @@ export default {
       this.$emit("songItemClick", i);
     },
   },
-  created() {
-    this.$bus.$on("Playing", (index, path) => {
-      if (this.$route.path == path) {
-        this.playIndex = index;
-      }
-    });
+  created(){
+        this.$bus.$on('Playing',(index,path)=>{
+            if(this.$route.path==path){
+                this.playIndex=index;
+            }
+        })
+    },
+  deactivated() {
+    console.log('我被执行了');
+    this.playIndex =.5
   },
 };
 </script>

@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import { requestLogin } from "network/login.js";
+import { requestLogin,getUserSongList } from "network/login.js";
+
 
 export default {
   data() {
@@ -80,6 +81,9 @@ export default {
         if (res.code !== 200) return this.$message.error(res.msg);
         this.$store.commit("showLogin");
         this.$store.commit('addUserInfo', res);
+        getUserSongList(res.profile.userId).then(res =>{
+          this.$store.commit('addSonglist',res.playlist)
+        })
         sessionStorage.setItem("cookie", res.cookie)
         // docCookies.setItem(cookie,res.cookie)
         // document.cookie =`cookie=${res.cookie}`

@@ -3,7 +3,7 @@
     <div class="hot-list">
       <h3>热搜榜</h3>
       <table>
-        <tr v-for="(item,index) in topSearchList" :key="index">
+        <tr v-for="(item,index) in topSearchList" :key="index" @click="searchDetail(index)">
           <td :class="{red:index <= 2}">{{getterIndex(index)}}</td>
           <td class="top">
             <div class="top-name">{{item.searchWord}}</div>
@@ -38,7 +38,11 @@ export default {
     getterIndex(index){
       let currentIndex = index +1
       return currentIndex < 10 ? '0' + currentIndex : currentIndex;
-    }
+    },
+    searchDetail(index) {
+      this.$router.push("/search/" + this.topSearchList[index].searchWord);
+      this.$parent.topSeacrchIsShow = false;
+    },
   },
   created() {
     this.getTopSeachList();

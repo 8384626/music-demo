@@ -12,11 +12,13 @@
           {{ item.text }}
         </dd>
       </router-link>
+      <my-song-list />
     </dl>
   </div>
 </template>
 
 <script>
+import MySongList from '../Login/MySongList'
 export default {
   data() {
     return {
@@ -65,6 +67,7 @@ export default {
           image: require("assets/img/menuLeft/download.svg"),
           text: "下载管理",
         },
+        { id: 10, link: "", image: "", text: "创建的歌单" },
       ],
     };
   },
@@ -74,13 +77,14 @@ export default {
       this.$store.commit('setLeftMenuId', this.menuList[index].id);
     },
   },
+  components: { MySongList },
 };
 </script>
 
 <style scoped>
 .menuleft {
   float: left;
-  width: 200px;
+  width: 300px;
   height: calc(100% - 114px);
   background-color: #181818;
 }
